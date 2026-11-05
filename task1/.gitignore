@@ -6,4 +6,6 @@ __pycache__/
 .env.*
 !.env.example
 credentials.json
-data/rest_validation/**/*_response.json
+data/*/**/*_response.json
+exps
+.vscode/

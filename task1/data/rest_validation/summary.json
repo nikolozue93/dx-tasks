@@ -1,0 +1,61 @@
+{
+  "source": "https://demo.dxfeed.com/webservice/rest/events.json",
+  "symbol": "AAPL",
+  "start_utc": "2026-11-04T15:00:00+00:00",
+  "end_utc": "2026-11-04T16:00:00+00:00",
+  "periods": {
+    "1m": {
+      "requested_symbol": "AAPL{=m}",
+      "url": "https://demo.dxfeed.com/webservice/rest/events.json?events=Candle&symbols=AAPL%7B%3Dm%7D&fromTime=20261104-150000Z&toTime=20261104-160000Z&timeout=10&indent=",
+      "http_status": 200,
+      "bytes": 29872,
+      "status": "OK",
+      "quality": {
+        "in_window": 60,
+        "at_end_boundary": 1,
+        "duplicates": 0,
+        "invalid_ohlc": 0,
+        "missing_on_time_grid": 0,
+        "first_missing_utc": []
+      }
+    },
+    "5m": {
+      "requested_symbol": "AAPL{=5m}",
+      "url": "https://demo.dxfeed.com/webservice/rest/events.json?events=Candle&symbols=AAPL%7B%3D5m%7D&fromTime=20261104-150000Z&toTime=20261104-160000Z&timeout=10&indent=",
+      "http_status": 200,
+      "bytes": 6464,
+      "status": "OK",
+      "quality": {
+        "in_window": 12,
+        "at_end_boundary": 1,
+        "duplicates": 0,
+        "invalid_ohlc": 0,
+        "missing_on_time_grid": 0,
+        "first_missing_utc": []
+      }
+    },
+    "1h": {
+      "requested_symbol": "AAPL{=h}",
+      "url": "https://demo.dxfeed.com/webservice/rest/events.json?events=Candle&symbols=AAPL%7B%3Dh%7D&fromTime=20261104-150000Z&toTime=20261104-160000Z&timeout=10&indent=",
+      "http_status": 200,
+      "bytes": 1058,
+      "status": "OK",
+      "quality": {
+        "in_window": 1,
+        "at_end_boundary": 1,
+        "duplicates": 0,
+        "invalid_ohlc": 0,
+        "missing_on_time_grid": 0,
+        "first_missing_utc": []
+      }
+    }
+  },
+  "comparison": {
+    "1m_to_5m": {
+      "MATCH": 12
+    },
+    "5m_to_1h": {
+      "MATCH": 1
+    }
+  }
+}

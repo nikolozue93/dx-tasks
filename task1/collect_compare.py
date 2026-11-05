@@ -145,7 +145,9 @@ def main():
     parser.add_argument("--date", default="2026-11-04")
     parser.add_argument("--start", default="15:00", help="UTC time HH:MM, default 15:00")
     parser.add_argument("--end", default="16:00", help="UTC time HH:MM, default 16:00")
-    parser.add_argument("--output", default="data/rest_validation")
+    parser.add_argument("--price-type", choices=["bid", "ask", "mark", "last"],
+                        help="Price source for quote-based candles, e.g. bid for EUR/USD")
+    parser.add_argument("--output", help="Output directory (defaults to a separate directory per instrument/date)")
     args = parser.parse_args()
     begin = parse_time(args.date, args.start)
     end = parse_time(args.date, args.end)
@@ -153,7 +155,10 @@ def main():
         parser.error("end must be after start")
     begin_ms = int(begin.timestamp() * 1000)
     end_ms = int(end.timestamp() * 1000)
-    output = Path(args.output)
+    tag = "".join(ch if ch.isalnum() else "_" for ch in args.symbol).strip("_")
+    if args.price_type:
+        tag += f"_{args.price_type}"
+    output = Path(args.output) if args.output else Path("data/rest_validation") / f"{tag}_{args.date}"
     output.mkdir(parents=True, exist_ok=True)
     records = {}
     results = {"source": BASE_URL, "symbol": args.symbol, "start_utc": begin.isoformat(),
@@ -161,7 +166,8 @@ def main():
     session = requests.Session()
     session.headers.update({"User-Agent": "Devexperts-application-support-candle-validation/1.0"})
     for label, (symbol_period, secs) in INTERVALS.items():
-        candle_symbol = f"{args.symbol}{{={symbol_period}}}"
+        attribute = f",price={args.price_type}" if args.price_type else ""
+        candle_symbol = f"{args.symbol}{{={symbol_period}{attribute}}}"
         params = {"events": "Candle", "symbols": candle_symbol,
                   "fromTime": fmt_api_time(begin), "toTime": fmt_api_time(end),
                   "timeout": "10", "indent": ""}

@@ -1,7 +1,5 @@
 # Task 1 — dxFeed Demo Investigation
 
-**Working report — updated after the first bounded latency test (November 5, 2026)**
-
 This is the running report for Task 1. New test results should be added here, not written as separate reports. The findings below come from the demo responses and saved test outputs. No production access was used.
 
 ## 1. Methodology and tools
@@ -10,7 +8,7 @@ I used Python (`requests`) and dxFeed's public demo interfaces to collect histor
 
 I rebuilt 5-minute candles from five 1-minute candles and hourly candles from twelve 5-minute candles. I compared open, high, low, close, and volume with the directly returned candles, using small rounding tolerances. Trade counts were recorded but are not yet part of the comparison. I also checked for duplicate timestamps, invalid OHLC values, and gaps on the expected time grid where continuous trading was appropriate. Comparison windows use an **exclusive end boundary**: a candle stamped exactly at the requested ending time belongs to the next window.
 
-Tools: `collect_compare.py` (collection and aggregation checks), `benchmark_rest.py` (small controlled API experiment), JSON/CSV evidence files, and preliminary access diagnostics.
+Tools: `collect_compare.py` (collection and aggregation checks), `benchmark_rest.py` (single-symbol latency test), `benchmark_multi.py` (mixed-symbol reliability test), JSON/CSV evidence files, and preliminary access diagnostics.
 
 ## 2. Data consistency results
 
@@ -60,7 +58,23 @@ All requests returned HTTP 200, REST `status=OK`, and 13 candles (including the 
 
 Latency was generally higher at greater concurrency, and the slowest request was at concurrency 4. With only four observations per level, I cannot infer whether latency grows linearly or exponentially, identify server capacity, or estimate a reliable production p95. There were no observed HTTP 429/503 responses or REST errors during this test. That does not prove rate limits do not exist. Measurements include client-to-demo network conditions and cannot isolate server processing time or caching.
 
-**Remaining Part 2 requirement:** The assessment asks for parallel requests across **multiple symbols**. The current AAPL-only run is a useful baseline, but a small mixed-symbol run is still needed before Part 2 is complete. Staleness and real-time-versus-historical comparisons have not yet been established.
+### Multi-symbol sequential vs parallel test
+
+**Test date:** November 5, 2026 (UTC). **Endpoint:** the same historical REST service. **Symbols:** `AAPL{=5m}`, `TSLA{=5m}`, and `EUR/USD{=5m,price=bid}`. **Window:** November 4, 15:00–16:00 UTC. I made **12 requests total**: six sequential requests (two per symbol) and six requests with at most three in flight (two per symbol). This is a bounded demonstration, not a production load test.
+
+| Test stage | Requests | Successes | Median latency | Fastest | Slowest |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Sequential (concurrency 1) | 6 | 6 | 734.0 ms | 613.2 ms | 873.2 ms |
+| Parallel (concurrency up to 3) | 6 | 6 | 1,690.6 ms | 979.8 ms | 2,178.0 ms |
+| **Overall** | **12** | **12** | **926.5 ms** | **613.2 ms** | **2,178.0 ms** |
+
+By instrument, observed median request latency changed from **634.9 to 1,440.3 ms** (AAPL), **741.2 to 2,092.0 ms** (TSLA), and **818.7 to 1,408.6 ms** (EUR/USD) between stages. There were only two observations per symbol per stage, so these numbers are descriptive, not stable performance estimates.
+
+All 12 requests returned HTTP 200 and REST `status=OK`, with **13 five-minute candle records** apiece, including the end-boundary record. Repeated historical **time/OHLC/volume** fingerprints matched **within each symbol across both stages**. This does not imply that the three instruments share the same data. No errors or rate-limit responses were observed in this sample.
+
+**Interpretation:** request latency was higher during the parallel stage, but data consistency and request success were preserved. The result does not show the server's maximum capacity, whether latency scales linearly or exponentially, or that the service has no rate limiting. Requests were run sequentially first and in parallel second, without randomizing order; network conditions, caching, and upstream scheduling may affect the comparison. Timing includes client/network time, not just server processing.
+
+**Remaining Part 2 limitation:** This evaluates historical REST requests under a small mixed-symbol burst. It does not test live feed freshness, streaming behavior, or a long-duration workload. Those must not be described as validated.
 
 ## 4. Operational interpretation (draft, subject to later evidence)
 
@@ -68,14 +82,14 @@ Latency was generally higher at greater concurrency, and the slowest request was
 - **Client data-integrity risk:** Inclusive end-boundary records can be duplicated by clients merging adjacent history requests without a half-open-window rule.
 - **Calendar/session risk:** Weekend no-data periods and extended-hours equity candles must be interpreted using market schedules and candle settings, not a continuous 24/7 grid.
 - **Coverage/timeout risk:** RKLB requests timed out through this public demo even when other instruments succeeded; support should distinguish symbol/source availability from an assumed data defect.
-- **Latency risk:** Small increases in concurrency coincided with higher observed latency. This deserves monitoring but is not enough to claim a bottleneck or define a production SLO.
+- **Latency risk:** Both the AAPL-only and mixed-symbol tests showed higher observed request latency at greater concurrency. All responses succeeded and were consistent in the tested windows. The small samples cannot establish capacity, a bottleneck, or a production SLO.
 
 For each risk in the final report, add an explicit detection method, safe mitigation, and escalation trigger. Do not claim those measures have already been deployed.
 
 ## 5. Still to complete
 
-1. **Part 1:** Test or clearly scope out demo real-time/Radar versus historical behavior. The assessment explicitly asks for this comparison.
-2. **Part 2:** Make a small, bounded **multi-symbol** parallel request test. Preserve individual timings and REST status, not only HTTP status.
+1. **Part 1:** Check or clearly scope out demo real-time/Radar or streaming-versus-historical behavior, including live freshness/partial-candle handling. This is an explicit assessment requirement not covered by the historical REST checks.
+2. **Part 2:** The small multi-symbol parallel-request experiment is complete. In the final discussion, explicitly address what appeared to degrade first (latency, not success or data consistency in these runs), and why the sample does not establish linear/exponential scaling or rate-limit thresholds. Avoid unsupported SLO claims; propose measurable candidate SLOs as recommendations only.
 3. **Part 3:** Finalize a risk table with monitoring, mitigation, and escalation criteria tied to observed findings.
 4. **Part 4:** Write an incident simulation derived from an observation, clearly labeled hypothetical, with client update, internal escalation, and post-mortem outline.
 5. **Part 5:** Propose one technical, one monitoring, and one documentation improvement, each with estimated complexity and business impact.
@@ -83,9 +97,10 @@ For each risk in the final report, add an explicit detection method, safe mitiga
 
 ## 6. Evidence kept with the project
 
-- `collect_compare.py`, `benchmark_rest.py`, `requirements.txt`
+- `collect_compare.py`, `benchmark_rest.py`, `benchmark_multi.py`, `requirements.txt`
 - Representative `data/rest_validation/` summaries and comparison CSVs for AAPL, TSLA, and EUR/USD
 - `data/edge_cases/` opening/closing summaries and their comparisons; weekend summary **after** running the corrected validator
 - `data/latency_test/samples.csv` and `data/latency_test/report.json`
+- `data/latency_test/multi_symbol/samples.csv` and `data/latency_test/multi_symbol/report.json`
 
 Raw HTTP responses and early probes can stay local or in an optional `experiments/` folder. They do not need to be duplicated in every Git commit. Keep enough source data to reproduce the reported results.

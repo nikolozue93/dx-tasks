@@ -1,0 +1,213 @@
+{
+  "source": "https://demo.dxfeed.com/webservice/rest/events.json",
+  "fromTime": "20261104-150000Z",
+  "toTime": "20261104-160000Z",
+  "symbols": [
+    "AAPL{=5m}",
+    "TSLA{=5m}",
+    "EUR/USD{=5m,price=bid}"
+  ],
+  "stages": {
+    "1": {
+      "overall": {
+        "requests": 6,
+        "successful_with_candles": 6,
+        "median_latency_ms": 734.0,
+        "min_latency_ms": 613.2,
+        "max_latency_ms": 873.2,
+        "http_status_counts": {
+          "200": 6
+        },
+        "api_status_counts": {
+          "OK": 6
+        },
+        "candle_counts": [
+          13
+        ],
+        "unique_successful_fingerprints_by_symbol": {
+          "AAPL{=5m}": 1,
+          "EUR/USD{=5m,price=bid}": 1,
+          "TSLA{=5m}": 1
+        },
+        "consistent_within_each_symbol": true
+      },
+      "by_symbol": {
+        "AAPL{=5m}": {
+          "requests": 2,
+          "successful_with_candles": 2,
+          "median_latency_ms": 634.9,
+          "min_latency_ms": 613.2,
+          "max_latency_ms": 656.6,
+          "http_status_counts": {
+            "200": 2
+          },
+          "api_status_counts": {
+            "OK": 2
+          },
+          "candle_counts": [
+            13
+          ],
+          "unique_successful_fingerprints_by_symbol": {
+            "AAPL{=5m}": 1
+          },
+          "consistent_within_each_symbol": true
+        },
+        "TSLA{=5m}": {
+          "requests": 2,
+          "successful_with_candles": 2,
+          "median_latency_ms": 741.2,
+          "min_latency_ms": 704.0,
+          "max_latency_ms": 778.5,
+          "http_status_counts": {
+            "200": 2
+          },
+          "api_status_counts": {
+            "OK": 2
+          },
+          "candle_counts": [
+            13
+          ],
+          "unique_successful_fingerprints_by_symbol": {
+            "TSLA{=5m}": 1
+          },
+          "consistent_within_each_symbol": true
+        },
+        "EUR/USD{=5m,price=bid}": {
+          "requests": 2,
+          "successful_with_candles": 2,
+          "median_latency_ms": 818.7,
+          "min_latency_ms": 764.1,
+          "max_latency_ms": 873.2,
+          "http_status_counts": {
+            "200": 2
+          },
+          "api_status_counts": {
+            "OK": 2
+          },
+          "candle_counts": [
+            13
+          ],
+          "unique_successful_fingerprints_by_symbol": {
+            "EUR/USD{=5m,price=bid}": 1
+          },
+          "consistent_within_each_symbol": true
+        }
+      }
+    },
+    "3": {
+      "overall": {
+        "requests": 6,
+        "successful_with_candles": 6,
+        "median_latency_ms": 1690.6,
+        "min_latency_ms": 979.8,
+        "max_latency_ms": 2178.0,
+        "http_status_counts": {
+          "200": 6
+        },
+        "api_status_counts": {
+          "OK": 6
+        },
+        "candle_counts": [
+          13
+        ],
+        "unique_successful_fingerprints_by_symbol": {
+          "AAPL{=5m}": 1,
+          "EUR/USD{=5m,price=bid}": 1,
+          "TSLA{=5m}": 1
+        },
+        "consistent_within_each_symbol": true
+      },
+      "by_symbol": {
+        "AAPL{=5m}": {
+          "requests": 2,
+          "successful_with_candles": 2,
+          "median_latency_ms": 1440.3,
+          "min_latency_ms": 1336.9,
+          "max_latency_ms": 1543.8,
+          "http_status_counts": {
+            "200": 2
+          },
+          "api_status_counts": {
+            "OK": 2
+          },
+          "candle_counts": [
+            13
+          ],
+          "unique_successful_fingerprints_by_symbol": {
+            "AAPL{=5m}": 1
+          },
+          "consistent_within_each_symbol": true
+        },
+        "TSLA{=5m}": {
+          "requests": 2,
+          "successful_with_candles": 2,
+          "median_latency_ms": 2092.0,
+          "min_latency_ms": 2006.0,
+          "max_latency_ms": 2178.0,
+          "http_status_counts": {
+            "200": 2
+          },
+          "api_status_counts": {
+            "OK": 2
+          },
+          "candle_counts": [
+            13
+          ],
+          "unique_successful_fingerprints_by_symbol": {
+            "TSLA{=5m}": 1
+          },
+          "consistent_within_each_symbol": true
+        },
+        "EUR/USD{=5m,price=bid}": {
+          "requests": 2,
+          "successful_with_candles": 2,
+          "median_latency_ms": 1408.6,
+          "min_latency_ms": 979.8,
+          "max_latency_ms": 1837.4,
+          "http_status_counts": {
+            "200": 2
+          },
+          "api_status_counts": {
+            "OK": 2
+          },
+          "candle_counts": [
+            13
+          ],
+          "unique_successful_fingerprints_by_symbol": {
+            "EUR/USD{=5m,price=bid}": 1
+          },
+          "consistent_within_each_symbol": true
+        }
+      }
+    }
+  },
+  "overall": {
+    "requests": 12,
+    "successful_with_candles": 12,
+    "median_latency_ms": 926.5,
+    "min_latency_ms": 613.2,
+    "max_latency_ms": 2178.0,
+    "http_status_counts": {
+      "200": 12
+    },
+    "api_status_counts": {
+      "OK": 12
+    },
+    "candle_counts": [
+      13
+    ],
+    "unique_successful_fingerprints_by_symbol": {
+      "AAPL{=5m}": 1,
+      "EUR/USD{=5m,price=bid}": 1,
+      "TSLA{=5m}": 1
+    },
+    "consistent_within_each_symbol": true
+  },
+  "notes": [
+    "Small public-demo experiment; not a capacity or production load test.",
+    "Latency includes client network and upstream waiting; no server-only processing metric.",
+    "Two samples per symbol per level do not support a stable percentile or SLA claim.",
+    "Fingerprints are checked within the same symbol; different instruments must not match.",
+    "Only completed historical candle windows are queried; live freshness is not tested."
+  ]
+}

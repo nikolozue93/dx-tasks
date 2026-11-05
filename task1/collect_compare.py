@@ -80,7 +80,7 @@ def quality(candles, seconds, begin_ms, end_ms):
     invalid_ohlc = sum(not (c["low"] <= c["open"] <= c["high"]
                              and c["low"] <= c["close"] <= c["high"])
                        for c in in_window)
-    # Valid on a fully trading, aligned hour. NOT a universal missing-market-data test.
+    # Grid gaps may be expected outside trading hours; DO NOT call them a market-data defect.
     expected = list(range(begin_ms, end_ms, seconds * 1000))
     missing = sorted(set(expected).difference(times))
     return {"in_window": len(in_window), "at_end_boundary": sum(c["time_ms"] == end_ms for c in candles),
@@ -196,6 +196,14 @@ def main():
     for lo, hi, hi_s, lo_s in [("1m", "5m", 300, 60), ("5m", "1h", 3600, 300)]:
         if lo not in records or hi not in records:
             print(f"[{lo} -> {hi}] skipped: source data unavailable")
+            continue
+        # If the API returns no candles at either granularity, we have nothing to
+        # aggregate. This may be an expected market closure or unavailable data;
+        # it is not evidence of 12 inconsistent higher-period candles.
+        if not records[lo] and not records[hi]:
+            results["comparison"][f"{lo}_to_{hi}"] = {"NO_DATA_TO_COMPARE": 1}
+            write_csv(output / f"comparison_{lo}_to_{hi}.csv", headers, [])
+            print(f"[{lo} -> {hi}] no candles at either interval; aggregation not applicable")
             continue
         comparisons = compare(records[lo], records[hi], hi_s, lo_s, begin_ms, end_ms)
         write_csv(output / f"comparison_{lo}_to_{hi}.csv", headers, comparisons)

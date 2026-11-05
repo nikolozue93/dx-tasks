@@ -1,0 +1,77 @@
+{
+  "source": "https://demo.dxfeed.com/webservice/rest/events.json",
+  "symbol": "AAPL{=5m}",
+  "fromTime": "20261104-150000Z",
+  "toTime": "20261104-160000Z",
+  "level_stats": {
+    "1": {
+      "requests": 4,
+      "successes_with_candles": 4,
+      "other_responses": 0,
+      "latency_ms_mean": 734.6,
+      "latency_ms_p50": 733.0,
+      "latency_ms_p95": 768.0,
+      "unique_successful_response_signatures": 1,
+      "all_successful_responses_identical": true,
+      "api_status_counts": {
+        "OK": 4
+      },
+      "http_status_counts": {
+        "200": 4
+      }
+    },
+    "2": {
+      "requests": 4,
+      "successes_with_candles": 4,
+      "other_responses": 0,
+      "latency_ms_mean": 1118.6,
+      "latency_ms_p50": 1184.9,
+      "latency_ms_p95": 1323.1,
+      "unique_successful_response_signatures": 1,
+      "all_successful_responses_identical": true,
+      "api_status_counts": {
+        "OK": 4
+      },
+      "http_status_counts": {
+        "200": 4
+      }
+    },
+    "4": {
+      "requests": 4,
+      "successes_with_candles": 4,
+      "other_responses": 0,
+      "latency_ms_mean": 1627.5,
+      "latency_ms_p50": 1577.7,
+      "latency_ms_p95": 2571.7,
+      "unique_successful_response_signatures": 1,
+      "all_successful_responses_identical": true,
+      "api_status_counts": {
+        "OK": 4
+      },
+      "http_status_counts": {
+        "200": 4
+      }
+    }
+  },
+  "overall": {
+    "requests": 12,
+    "successes_with_candles": 12,
+    "other_responses": 0,
+    "latency_ms_mean": 1160.2,
+    "latency_ms_p50": 929.5,
+    "latency_ms_p95": 2250.3,
+    "unique_successful_response_signatures": 1,
+    "all_successful_responses_identical": true,
+    "api_status_counts": {
+      "OK": 12
+    },
+    "http_status_counts": {
+      "200": 12
+    }
+  },
+  "notes": [
+    "A bounded public-demo experiment, not a capacity or production load test.",
+    "P95 with only a few samples is descriptive and not an SLA estimate.",
+    "No observed 429 responses does not establish absence of rate limits."
+  ]
+}

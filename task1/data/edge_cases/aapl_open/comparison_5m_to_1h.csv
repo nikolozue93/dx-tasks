@@ -1,0 +1,3 @@
+utc_time,expected_child_candles,actual_child_candles,status,different_fields,expected_open,actual_open,expected_high,actual_high,expected_low,actual_low,expected_close,actual_close,expected_volume,actual_volume
+2026-11-04T14:00:00+00:00,12,12,MATCH,,339,339,351.75,351.75,338.55,338.55,351.66,351.66,14503645.593641,14503645.593641
+2026-11-04T15:00:00+00:00,12,12,MATCH,,351.675,351.675,354.1395,354.1395,351.2122,351.2122,353.82,353.82,16044986.718225,16044986.718225

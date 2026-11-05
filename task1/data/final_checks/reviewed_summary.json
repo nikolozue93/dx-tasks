@@ -1,0 +1,30 @@
+{
+  "price_bearing_sse_events": 17,
+  "unique_sse_periods": 1,
+  "updating_candles": [
+    {
+      "bar_start_utc": "2026-11-05T22:25:00+00:00",
+      "updates_after_snapshot": 16,
+      "first_count": 68,
+      "last_count": 84,
+      "interpretation": "Changing candle state on delayed SSE feed"
+    }
+  ],
+  "partial_candle_result": "OBSERVED_INCREMENTAL_CANDLE_STATES",
+  "rest_sse_ordering": [
+    {
+      "bar_start_utc": "2026-11-05T22:25:00+00:00",
+      "rest_before_count": 65,
+      "sse_count_range": [
+        67,
+        84
+      ],
+      "rest_after_count": 86,
+      "ordered_as_expected": true
+    }
+  ],
+  "rest_sse_ordering_status": "COUNTS_CONSISTENT_WITH_PROGRESSION",
+  "completed_comparison": "NOT_VERIFIED_NO_STREAM_ROLLOVER",
+  "completed_bars_compared": [],
+  "note": "SSE is delayed. A candle timestamp earlier than computer time does not prove that the SSE feed has finalized that candle. A changing close is expected until feed rollover. REST-before and REST-after are different observations, not simultaneous snapshots."
+}

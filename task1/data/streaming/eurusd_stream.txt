@@ -1,0 +1,6 @@
+data: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><events xmlns="http://schema.dxfeed.com/event"><status>OK</status></events>
+
+data: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><events xmlns="http://schema.dxfeed.com/event"><Candle><eventSymbol>EUR/USD{=m,price=bid}</eventSymbol><eventTime>0</eventTime><eventFlags>14</eventFlags><index>7704789429121974272</index><time>2026-11-05T20:38:02.000Z</time><sequence>0</sequence><count>0</count><open>NaN</open><high>NaN</high><low>NaN</low><close>NaN</close><volume>NaN</volume><vwap>NaN</vwap><bidVolume>NaN</bidVolume><askVolume>NaN</askVolume><impVolatility>NaN</impVolatility><openInterest>NaN</openInterest></Candle><status>OK</status></events>
+
+data: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><events xmlns="http://schema.dxfeed.com/event"><status>OK</status></events>
+

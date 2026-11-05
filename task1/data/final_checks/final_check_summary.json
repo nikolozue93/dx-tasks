@@ -1,0 +1,28 @@
+{
+  "candle_symbol": "EUR/USD{=5m,price=bid}",
+  "capture_started_utc": "2026-11-05T22:42:06.107426+00:00",
+  "capture_ended_utc": "2026-11-05T22:42:27.273874+00:00",
+  "rest_before_count": 1,
+  "rest_after_count": 1,
+  "sse_message_count": 18,
+  "sse_candle_event_count": 18,
+  "sse_connection_error": null,
+  "sse_valid_events": 17,
+  "unique_sse_bar_times": 1,
+  "completed_comparison": "DIFFERENCE_REQUIRES_INVESTIGATION",
+  "completed_bars_compared": [
+    {
+      "bar_start_utc": "2026-11-05T22:25:00+00:00",
+      "stream_updates_seen": 17,
+      "status": "DIFFERENCE_REQUIRES_INVESTIGATION",
+      "different_fields": [
+        "close"
+      ]
+    }
+  ],
+  "completed_bars_missing_rest": [],
+  "excluded_intermediate_bars": [],
+  "partial_candle_result": "NOT_VERIFIED",
+  "updated_open_bars_utc": [],
+  "note": "Changes in an unfinished candle are expected; only previously completed, timestamp-aligned bars are compared."
+}

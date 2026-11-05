@@ -1,0 +1,28 @@
+{
+  "http_status": 200,
+  "api_status": "OK",
+  "request_url": "https://demo.dxfeed.com/webservice/rest/events.json?events=Candle&symbols=EUR%2FUSD%7B%3D5m%2Cprice%3Dbid%7D&fromTime=20261105-222205Z&toTime=20261105-224205Z&timeout=10&indent=",
+  "valid_candles": 1,
+  "candles": [
+    {
+      "eventSymbol": "EUR/USD{=5m,price=bid}",
+      "eventTime": 0,
+      "eventFlags": 0,
+      "index": 7704816994222080000,
+      "time": 1793917500000,
+      "sequence": 0,
+      "count": 65,
+      "open": 1.12166,
+      "high": 1.1218,
+      "low": 1.12154,
+      "close": 1.12164,
+      "volume": 65,
+      "vwap": 1.121684307692308,
+      "bidVolume": "NaN",
+      "askVolume": "NaN",
+      "impVolatility": "NaN",
+      "openInterest": "NaN"
+    }
+  ],
+  "observed_at_utc": "2026-11-05T22:42:06.107304+00:00"
+}

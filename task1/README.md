@@ -50,39 +50,45 @@ task1/
 ```
 
 
-The `data/` directory contains the responses and derived results used in the report. Raw REST JSON, normalized CSVs, comparison tables, and benchmark samples are retained so findings can be independently inspected.
+The `data/` directory contains normalized candle CSVs, comparison tables, quality summaries, latency samples, and saved REST/SSE capture data. Original REST JSON responses from historical candle collection are not included in this repository; the included candle CSVs support reproducing the aggregation checks.
 
 ## Running the tests
 
-**Requirements:** Python 3.10+, `requests`, and network access to the public demo when collecting fresh data.
+**Requirements:** Python 3.11+, `requests`, and network access to the public demo when collecting fresh data. Run commands below from the `task1/` directory.
 
 ```bash
 python -m pip install -r requirements.txt
 ```
 
+**Offline aggregation tests:**
+
+```bash
+python -m unittest discover -s tests -v
+```
+
 **Historical validation** (UTC dates and times):
 
 ```bash
-python collect_compare.py --symbol AAPL --date 2026-11-04
-python collect_compare.py --symbol TSLA --date 2026-11-04 --start 15:00 --end 20:00
-python collect_compare.py --symbol 'EUR/USD' --price-type bid --date 2026-11-04 --start 15:00 --end 20:00
+python code/collect_compare.py --symbol AAPL --date 2026-11-04
+python code/collect_compare.py --symbol TSLA --date 2026-11-04 --start 15:00 --end 20:00
+python code/collect_compare.py --symbol 'EUR/USD' --price-type bid --date 2026-11-04 --start 15:00 --end 20:00
 ```
 
 **Market-session examples:**
 
 ```bash
-python collect_compare.py --symbol AAPL --date 2026-11-04 --start 14:00 --end 16:00 --output data/edge_cases/aapl_open
-python collect_compare.py --symbol AAPL --date 2026-11-04 --start 20:00 --end 22:00 --output data/edge_cases/aapl_close
-python collect_compare.py --symbol AAPL --date 2026-10-31 --start 15:00 --end 16:00 --output data/edge_cases/aapl_weekend
+python code/collect_compare.py --symbol AAPL --date 2026-11-04 --start 14:00 --end 16:00 --output data/edge_cases/aapl_open
+python code/collect_compare.py --symbol AAPL --date 2026-11-04 --start 20:00 --end 22:00 --output data/edge_cases/aapl_close
+python code/collect_compare.py --symbol AAPL --date 2026-10-31 --start 15:00 --end 16:00 --output data/edge_cases/aapl_weekend
 ```
 
 **Bounded REST benchmarks:**
 
 ```bash
-python benchmark_rest.py --dry-run
-python benchmark_rest.py
-python benchmark_multi.py --dry-run
-python benchmark_multi.py
+python code/benchmark_rest.py --dry-run
+python code/benchmark_rest.py
+python code/benchmark_multi.py --dry-run
+python code/benchmark_multi.py
 ```
 
 Both benchmarks intentionally use small workloads on a shared demo service; they are not stress tests. New runs can differ from the recorded results.
@@ -90,7 +96,7 @@ Both benchmarks intentionally use small workloads on a shared demo service; they
 **Review the saved SSE capture without network access:**
 
 ```bash
-python verify_partial_and_live.py --analyze-existing data/final_checks
+python code/verify_partial_and_live.py --analyze-existing data/final_checks
 ```
 
 This regenerates `data/final_checks/reviewed_summary.json`. A new short observation is also supported with `--symbol`, `--price-type`, and `--seconds`; the saved capture, rather than a new run, is the evidence cited in the report.

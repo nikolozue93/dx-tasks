@@ -37,7 +37,7 @@ The `eventSource` demo endpoint was used for an SSE observation. An earlier Cand
 
 ### 1.2 Data processing and checks
 
-The Python collector requested 1-minute, 5-minute, and 1-hour candles over explicitly specified UTC windows, preserved the original JSON responses, and wrote normalized candle CSV files. It reconstructed each five-minute candle from five one-minute candles and each hourly candle from twelve five-minute candles, then checked:
+The Python collector requested 1-minute, 5-minute, and 1-hour candles over explicitly specified UTC windows, captured the REST payloads during collection, and wrote normalized candle CSV files. The repository retains normalized candle CSVs but not the historical raw REST JSON responses. It reconstructed each five-minute candle from five one-minute candles and each hourly candle from twelve five-minute candles, then checked:
 
 - **Open:** first constituent candle's open
 - **High / low:** maximum high and minimum low over constituents
@@ -77,7 +77,7 @@ Reconstructing the five-minute candle from five one-minute records produced the 
 | Volume | 2,375,224.583047 | 2,375,224.583047 |
 | Contributing-event count | 36,478 | 36,478 |
 
-The preserved `comparison_1m_to_5m.csv` and `comparison_5m_to_1h.csv` files provide the same checks for all periods. The stored raw JSON responses allow independent recalculation.
+The preserved `comparison_1m_to_5m.csv` and `comparison_5m_to_1h.csv` files provide the same checks for all periods. The saved normalized candle CSVs allow independent recalculation from the captured candle values.
 
 ## 3. Anomalies, edge cases, and client impact
 
@@ -236,13 +236,13 @@ No production service failure, causal RKLB root cause, cache behavior, rate-limi
 
 | Evidence | Repository path |
 | --- | --- |
-| Historical raw candles, normalized records, summaries and comparisons | `data/rest_validation/` |
+| Normalized candle CSVs, summaries and comparisons | `data/rest_validation/` |
 | Opening, closing, weekend observations | `data/edge_cases/` |
 | Single-symbol benchmark per-request samples and summary | `data/latency_test/samples.csv`, `data/latency_test/report.json` |
 | Mixed-symbol benchmark samples and summary | `data/latency_test/multi_symbol/` |
 | First empty SSE snapshot | `data/streaming/eurusd_stream.txt` |
 | Valid SSE capture, before/after REST snapshots, and corrected evaluation | `data/final_checks/` |
-| Reproduction and diagnostics | `collect_compare.py`, `benchmark_rest.py`, `benchmark_multi.py`, `verify_partial_and_live.py`, `exps/` |
+| Reproduction and diagnostics | `code/collect_compare.py`, `code/benchmark_rest.py`, `code/benchmark_multi.py`, `code/verify_partial_and_live.py`, `tests/test_aggregation.py` |
 
 The earlier `data/final_checks/final_check_summary.json` records an **initial, superseded** wall-clock-based interpretation. `reviewed_summary.json` is the corrected assessment and should be used for conclusions.
 

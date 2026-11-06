@@ -1,4 +1,4 @@
-# Trading Holiday Schedule Automation
+# Trading Holiday Schedule Automation - Task 3
 
 A Python batch pipeline that gathers, normalizes, validates, and publishes **2026 trading holiday schedules** for NASDAQ, NYSE, CME Globex, and an OPRA-related U.S. options calendar. The output is a single source-attributed CSV, with optional automatic publishing to **Google Drive and a native Google Sheet**.
 

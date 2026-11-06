@@ -30,21 +30,25 @@ These findings describe a **public, delayed demo**; they do not establish produc
 ## Repository layout
 
 ```text
-.
-├── collect_compare.py          # Historical OHLC/volume/count validation
-├── benchmark_rest.py           # Bounded single-symbol REST benchmark
-├── benchmark_multi.py          # Bounded multi-symbol parallel benchmark
-├── verify_partial_and_live.py  # Delayed SSE capture and offline review
+task1/
+├── README.md
+├── technical_report.md
 ├── requirements.txt
-├── technical_report.md         # Investigation, evidence, impact and proposals
-├── data/
-│   ├── rest_validation/        # AAPL, TSLA and EUR/USD candle evidence
-│   ├── edge_cases/             # Opening, closing and weekend observations
-│   ├── latency_test/           # Per-request measurements and summaries
-│   ├── streaming/              # Initial SSE empty-snapshot capture
-│   └── final_checks/           # REST/SSE capture and reviewed interpretation
-└── exps/                       # Initial endpoint-access diagnostics
+├── code/
+│   ├── collect_compare.py
+│   ├── benchmark_rest.py
+│   ├── benchmark_multi.py
+│   └── verify_partial_and_live.py
+├── tests/
+│   └── test_aggregation.py
+└── data/
+    ├── rest_validation/
+    ├── edge_cases/
+    ├── latency_test/
+    ├── streaming/
+    └── final_checks/
 ```
+
 
 The `data/` directory contains the responses and derived results used in the report. Raw REST JSON, normalized CSVs, comparison tables, and benchmark samples are retained so findings can be independently inspected.
 

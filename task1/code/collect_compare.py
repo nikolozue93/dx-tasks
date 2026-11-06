@@ -98,7 +98,9 @@ def aggregate(children):
     children = sorted(children, key=lambda r: r["time_ms"])
     return {"open": children[0]["open"], "high": max(x["high"] for x in children),
             "low": min(x["low"] for x in children), "close": children[-1]["close"],
-            "volume": sum((x["volume"] for x in children), Decimal("0"))}
+            "volume": sum((x["volume"] for x in children), Decimal("0")),
+            "count": sum(child["count"] for child in children),
+            }
 
 
 def compare(lower, higher, higher_seconds, lower_seconds, begin_ms, end_ms):
@@ -117,8 +119,11 @@ def compare(lower, higher, higher_seconds, lower_seconds, begin_ms, end_ms):
                "actual_child_candles": len(children), "status": "", "different_fields": "",
                "expected_open": "", "actual_open": "", "expected_high": "", "actual_high": "",
                "expected_low": "", "actual_low": "", "expected_close": "", "actual_close": "",
-               "expected_volume": "", "actual_volume": ""}
-        if child_times != required_times:
+               "expected_volume": "", "actual_volume": "",
+               "expected_count": "",
+               "actual_count": "",
+               }
+        if child_times != required_times or len(children) != expected_count:
             row["status"] = "INCOMPLETE_LOWER_INTERVAL"
         elif start not in higher_by_time:
             row["status"] = "MISSING_HIGHER_INTERVAL"
@@ -126,13 +131,23 @@ def compare(lower, higher, higher_seconds, lower_seconds, begin_ms, end_ms):
             expected = aggregate(children)
             actual = higher_by_time[start]
             different = []
-            for field in ["open", "high", "low", "close", "volume"]:
+            for field in ["open", "high", "low", "close", "volume", "count"]:
                 row[f"expected_{field}"] = str(expected[field])
                 row[f"actual_{field}"] = str(actual[field])
-                tolerance = Decimal("0.0001") if field != "volume" else max(
-                    Decimal("0.01"), abs(expected[field]) * Decimal("0.000001"))
+
+                if field == "count":
+                    if expected[field] != actual[field]:
+                        different.append(field)
+                    continue
+
+                tolerance = (
+                    Decimal("0.0001") if field != "volume"
+                    else max(Decimal("0.01"), abs(expected[field]) * Decimal("0.000001"))
+                )
+
                 if abs(expected[field] - actual[field]) > tolerance:
                     different.append(field)
+
             row["different_fields"] = ",".join(different)
             row["status"] = "DIFFERENCE" if different else "MATCH"
         output.append(row)
@@ -192,7 +207,16 @@ def main():
             print(f"    ERROR: {exc}")
         results["periods"][label] = info
     session.close()
-    headers = ["utc_time", "expected_child_candles", "actual_child_candles", "status", "different_fields"] + [f"{mode}_{field}" for field in ["open", "high", "low", "close", "volume"] for mode in ["expected", "actual"]]
+
+    headers = [
+        "utc_time", "expected_child_candles",
+        "actual_child_candles", "status", "different_fields"
+    ] + [
+        f"{mode}_{field}"
+        for field in ["open", "high", "low", "close", "volume", "count"]
+        for mode in ["expected", "actual"]
+    ]
+  
     for lo, hi, hi_s, lo_s in [("1m", "5m", 300, 60), ("5m", "1h", 3600, 300)]:
         if lo not in records or hi not in records:
             print(f"[{lo} -> {hi}] skipped: source data unavailable")
@@ -203,13 +227,18 @@ def main():
         if not records[lo] and not records[hi]:
             results["comparison"][f"{lo}_to_{hi}"] = {"NO_DATA_TO_COMPARE": 1}
             write_csv(output / f"comparison_{lo}_to_{hi}.csv", headers, [])
+
             print(f"[{lo} -> {hi}] no candles at either interval; aggregation not applicable")
             continue
+
         comparisons = compare(records[lo], records[hi], hi_s, lo_s, begin_ms, end_ms)
+
         write_csv(output / f"comparison_{lo}_to_{hi}.csv", headers, comparisons)
+
         counts = dict(__import__("collections").Counter(row["status"] for row in comparisons))
         results["comparison"][f"{lo}_to_{hi}"] = counts
         print(f"[{lo} -> {hi}] {counts}")
+        
         for diff in comparisons:
             if diff["status"] != "MATCH":
                 print(f"    Inspect: {diff['utc_time']} {diff['status']} {diff['different_fields']}")

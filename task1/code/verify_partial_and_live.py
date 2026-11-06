@@ -319,7 +319,7 @@ def output_directory(path):
     directory = Path(path)
     if directory.is_absolute():
         return directory
-    return Path(__file__).resolve().parent / directory
+    return Path(__file__).resolve().parents[1] / directory
 
 
 def save_json(path, value):

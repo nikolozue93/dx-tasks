@@ -1,0 +1,26 @@
+{
+  "year": 2026,
+  "total_events": 44,
+  "counts": {
+    "CME": 10,
+    "NASDAQ": 12,
+    "NYSE": 12,
+    "OPRA": 10
+  },
+  "status_counts": {
+    "HOLIDAY_HOURS": 10,
+    "CLOSED": 30,
+    "EARLY_CLOSE": 4
+  },
+  "source_basis_counts": {
+    "OFFICIAL_REFERENCE_FALLBACK": 10,
+    "OFFICIAL": 24,
+    "OCC_PROXY_REFERENCE_FALLBACK": 10
+  },
+  "opra_proxy_events": 10,
+  "reference_fallback_events": 20,
+  "notes": [
+    "CME rows are product-specific holiday windows, not confirmed full-session closures.",
+    "OPRA rows are OCC-clearing-calendar proxy dates, not an OPRA-issued 2026 schedule."
+  ]
+}

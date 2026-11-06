@@ -1,0 +1,45 @@
+exchange,date,holiday,status,close_time_local,timezone,window_start,window_end,source_url,source_basis,notes
+CME,2026-01-01,New Year's Day,HOLIDAY_HOURS,,America/Chicago,2025-12-31,2026-01-02,https://www.cmegroup.com/trading-hours.html,OFFICIAL,"Globex holiday-hours window; product-specific hours, not a universal closure"
+CME,2026-01-19,Martin Luther King Jr. Day,HOLIDAY_HOURS,,America/Chicago,2026-01-18,2026-01-20,https://www.cmegroup.com/trading-hours.html,OFFICIAL,"Globex holiday-hours window; product-specific hours, not a universal closure"
+CME,2026-02-16,Presidents Day,HOLIDAY_HOURS,,America/Chicago,2026-02-15,2026-02-17,https://www.cmegroup.com/trading-hours.html,OFFICIAL,"Globex holiday-hours window; product-specific hours, not a universal closure"
+CME,2026-04-03,Good Friday,HOLIDAY_HOURS,,America/Chicago,2026-04-02,2026-04-04,https://www.cmegroup.com/trading-hours.html,OFFICIAL,"Globex holiday-hours window; product-specific hours, not a universal closure"
+CME,2026-05-25,Memorial Day,HOLIDAY_HOURS,,America/Chicago,2026-05-24,2026-05-26,https://www.cmegroup.com/trading-hours.html,OFFICIAL,"Globex holiday-hours window; product-specific hours, not a universal closure"
+CME,2026-06-19,Juneteenth,HOLIDAY_HOURS,,America/Chicago,2026-06-18,2026-06-19,https://www.cmegroup.com/trading-hours.html,OFFICIAL,"Globex holiday-hours window; product-specific hours, not a universal closure"
+CME,2026-07-03,Independence Day (observed),HOLIDAY_HOURS,,America/Chicago,2026-07-03,2026-07-05,https://www.cmegroup.com/trading-hours.html,OFFICIAL,"Globex holiday-hours window; product-specific hours, not a universal closure"
+CME,2026-09-07,Labor Day,HOLIDAY_HOURS,,America/Chicago,2026-09-06,2026-09-08,https://www.cmegroup.com/trading-hours.html,OFFICIAL,"Globex holiday-hours window; product-specific hours, not a universal closure"
+CME,2026-11-26,Thanksgiving Day,HOLIDAY_HOURS,,America/Chicago,2026-11-26,2026-11-28,https://www.cmegroup.com/trading-hours.html,OFFICIAL,"Globex holiday-hours window; product-specific hours, not a universal closure"
+CME,2026-12-25,Christmas Day,HOLIDAY_HOURS,,America/Chicago,2026-12-24,2026-12-26,https://www.cmegroup.com/trading-hours.html,OFFICIAL,"Globex holiday-hours window; product-specific hours, not a universal closure"
+NASDAQ,2026-01-01,New Year's Day,CLOSED,,America/New_York,,,https://nasdaqtrader.com/Trader.aspx?id=Calendar,OFFICIAL,
+NASDAQ,2026-01-19,Martin Luther King Jr. Day,CLOSED,,America/New_York,,,https://nasdaqtrader.com/Trader.aspx?id=Calendar,OFFICIAL,
+NASDAQ,2026-02-16,Presidents Day,CLOSED,,America/New_York,,,https://nasdaqtrader.com/Trader.aspx?id=Calendar,OFFICIAL,
+NASDAQ,2026-04-03,Good Friday,CLOSED,,America/New_York,,,https://nasdaqtrader.com/Trader.aspx?id=Calendar,OFFICIAL,
+NASDAQ,2026-05-25,Memorial Day,CLOSED,,America/New_York,,,https://nasdaqtrader.com/Trader.aspx?id=Calendar,OFFICIAL,
+NASDAQ,2026-06-19,Juneteenth,CLOSED,,America/New_York,,,https://nasdaqtrader.com/Trader.aspx?id=Calendar,OFFICIAL,
+NASDAQ,2026-07-03,Independence Day (observed),CLOSED,,America/New_York,,,https://nasdaqtrader.com/Trader.aspx?id=Calendar,OFFICIAL,
+NASDAQ,2026-09-07,Labor Day,CLOSED,,America/New_York,,,https://nasdaqtrader.com/Trader.aspx?id=Calendar,OFFICIAL,
+NASDAQ,2026-11-26,Thanksgiving Day,CLOSED,,America/New_York,,,https://nasdaqtrader.com/Trader.aspx?id=Calendar,OFFICIAL,
+NASDAQ,2026-11-27,Day after Thanksgiving,EARLY_CLOSE,13:00,America/New_York,,,https://nasdaqtrader.com/Trader.aspx?id=Calendar,OFFICIAL,Regular US equities close early
+NASDAQ,2026-12-24,Christmas Eve,EARLY_CLOSE,13:00,America/New_York,,,https://nasdaqtrader.com/Trader.aspx?id=Calendar,OFFICIAL,Regular US equities close early
+NASDAQ,2026-12-25,Christmas Day,CLOSED,,America/New_York,,,https://nasdaqtrader.com/Trader.aspx?id=Calendar,OFFICIAL,
+NYSE,2026-01-01,New Year's Day,CLOSED,,America/New_York,,,https://www.nyse.com/markets/hours-calendars,OFFICIAL,
+NYSE,2026-01-19,Martin Luther King Jr. Day,CLOSED,,America/New_York,,,https://www.nyse.com/markets/hours-calendars,OFFICIAL,
+NYSE,2026-02-16,Presidents Day,CLOSED,,America/New_York,,,https://www.nyse.com/markets/hours-calendars,OFFICIAL,
+NYSE,2026-04-03,Good Friday,CLOSED,,America/New_York,,,https://www.nyse.com/markets/hours-calendars,OFFICIAL,
+NYSE,2026-05-25,Memorial Day,CLOSED,,America/New_York,,,https://www.nyse.com/markets/hours-calendars,OFFICIAL,
+NYSE,2026-06-19,Juneteenth,CLOSED,,America/New_York,,,https://www.nyse.com/markets/hours-calendars,OFFICIAL,
+NYSE,2026-07-03,Independence Day (observed),CLOSED,,America/New_York,,,https://www.nyse.com/markets/hours-calendars,OFFICIAL,
+NYSE,2026-09-07,Labor Day,CLOSED,,America/New_York,,,https://www.nyse.com/markets/hours-calendars,OFFICIAL,
+NYSE,2026-11-26,Thanksgiving Day,CLOSED,,America/New_York,,,https://www.nyse.com/markets/hours-calendars,OFFICIAL,
+NYSE,2026-11-27,Day after Thanksgiving,EARLY_CLOSE,13:00,America/New_York,,,https://www.nyse.com/markets/hours-calendars,OFFICIAL,NYSE equity sessions; eligible options may close at 13:15 ET
+NYSE,2026-12-24,Christmas Eve,EARLY_CLOSE,13:00,America/New_York,,,https://www.nyse.com/markets/hours-calendars,OFFICIAL,NYSE equity sessions; eligible options may close at 13:15 ET
+NYSE,2026-12-25,Christmas Day,CLOSED,,America/New_York,,,https://www.nyse.com/markets/hours-calendars,OFFICIAL,
+OPRA,2026-01-01,New Year's Day,CLOSED,,America/New_York,,,https://infomemo.theocc.com/infomemos?number=57897,OCC_PROXY_NOT_OPRA_OFFICIAL,OCC options-clearing holiday proxy; OPRA-specific 2026 schedule not confirmed
+OPRA,2026-01-19,Martin Luther King Jr. Day,CLOSED,,America/New_York,,,https://infomemo.theocc.com/infomemos?number=57897,OCC_PROXY_NOT_OPRA_OFFICIAL,OCC options-clearing holiday proxy; OPRA-specific 2026 schedule not confirmed
+OPRA,2026-02-16,Presidents Day,CLOSED,,America/New_York,,,https://infomemo.theocc.com/infomemos?number=57897,OCC_PROXY_NOT_OPRA_OFFICIAL,OCC options-clearing holiday proxy; OPRA-specific 2026 schedule not confirmed
+OPRA,2026-04-03,Good Friday,CLOSED,,America/New_York,,,https://infomemo.theocc.com/infomemos?number=57897,OCC_PROXY_NOT_OPRA_OFFICIAL,OCC options-clearing holiday proxy; OPRA-specific 2026 schedule not confirmed
+OPRA,2026-05-25,Memorial Day,CLOSED,,America/New_York,,,https://infomemo.theocc.com/infomemos?number=57897,OCC_PROXY_NOT_OPRA_OFFICIAL,OCC options-clearing holiday proxy; OPRA-specific 2026 schedule not confirmed
+OPRA,2026-06-19,Juneteenth,CLOSED,,America/New_York,,,https://infomemo.theocc.com/infomemos?number=57897,OCC_PROXY_NOT_OPRA_OFFICIAL,OCC options-clearing holiday proxy; OPRA-specific 2026 schedule not confirmed
+OPRA,2026-07-03,Independence Day (observed),CLOSED,,America/New_York,,,https://infomemo.theocc.com/infomemos?number=57897,OCC_PROXY_NOT_OPRA_OFFICIAL,OCC options-clearing holiday proxy; OPRA-specific 2026 schedule not confirmed
+OPRA,2026-09-07,Labor Day,CLOSED,,America/New_York,,,https://infomemo.theocc.com/infomemos?number=57897,OCC_PROXY_NOT_OPRA_OFFICIAL,OCC options-clearing holiday proxy; OPRA-specific 2026 schedule not confirmed
+OPRA,2026-11-26,Thanksgiving Day,CLOSED,,America/New_York,,,https://infomemo.theocc.com/infomemos?number=57897,OCC_PROXY_NOT_OPRA_OFFICIAL,OCC options-clearing holiday proxy; OPRA-specific 2026 schedule not confirmed
+OPRA,2026-12-25,Christmas Day,CLOSED,,America/New_York,,,https://infomemo.theocc.com/infomemos?number=57897,OCC_PROXY_NOT_OPRA_OFFICIAL,OCC options-clearing holiday proxy; OPRA-specific 2026 schedule not confirmed
